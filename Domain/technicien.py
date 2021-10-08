@@ -7,14 +7,8 @@ class Technicien(Personne):
         self.numeroEmploye = numeroEmploye
         self.interventions = {}
 
-    def modifierInformations(self, **kwargs):
-        pass
 
-    def assignerIntervention(self, Intervention):
-        pass
 
-    def annulerIntervention(self, Intervention):
-        pass
 
-    def recupererInterventions(self, ):
-        pass
+
+
