@@ -1,4 +1,4 @@
-CREATE TABLE Technicien(
+CREATE TABLE IF NOT EXISTS Technicien(
    numeroEmploye INT AUTO_INCREMENT,
    nom VARCHAR(50),
    prenom VARCHAR(50),
@@ -6,8 +6,8 @@ CREATE TABLE Technicien(
    PRIMARY KEY(numeroEmploye)
 );
 
-CREATE TABLE Client(
-   numeroClient VARCHAR(50) AUTO_INCREMENT,
+CREATE TABLE IF NOT EXISTS Client(
+   numeroClient INT AUTO_INCREMENT,
    nom VARCHAR(50),
    prenom VARCHAR(50),
    numeroTelephone VARCHAR(50),
@@ -15,20 +15,20 @@ CREATE TABLE Client(
    PRIMARY KEY(numeroClient)
 );
 
-CREATE TABLE TypeProduit(
+CREATE TABLE IF NOT EXISTS TypeProduit(
    codeBarre INT,
    type VARCHAR(50),
    PRIMARY KEY(codeBarre)
 );
 
-CREATE TABLE Piece(
+CREATE TABLE IF NOT EXISTS Piece(
    reference VARCHAR(50),
    designation VARCHAR(250),
    stock INT,
    PRIMARY KEY(reference)
 );
 
-CREATE TABLE Produit(
+CREATE TABLE IF NOT EXISTS Produit(
    numeroSerie VARCHAR(50),
    dateAchat DATE,
    codeBarre INT NOT NULL,
@@ -38,7 +38,7 @@ CREATE TABLE Produit(
    FOREIGN KEY(numeroClient) REFERENCES Client(numeroClient)
 );
 
-CREATE TABLE Intervention(
+CREATE TABLE IF NOT EXISTS Intervention(
    numeroIntervention INT AUTO_INCREMENT,
    dateIntervention DATE,
    lieu VARCHAR(250),
@@ -52,7 +52,7 @@ CREATE TABLE Intervention(
    FOREIGN KEY(numeroEmploye) REFERENCES Technicien(numeroEmploye)
 );
 
-CREATE TABLE PieceProduit(
+CREATE TABLE IF NOT EXISTS PieceProduit(
    codeBarre INT,
    reference VARCHAR(50),
    PRIMARY KEY(codeBarre, reference),
@@ -60,7 +60,7 @@ CREATE TABLE PieceProduit(
    FOREIGN KEY(reference) REFERENCES Piece(reference)
 );
 
-CREATE TABLE PieceChange(
+CREATE TABLE IF NOT EXISTS PieceChange(
    numeroIntervention INT,
    reference VARCHAR(50),
    PRIMARY KEY(numeroIntervention, reference),
