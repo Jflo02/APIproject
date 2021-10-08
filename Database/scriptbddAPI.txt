@@ -1,0 +1,69 @@
+CREATE TABLE Technicien(
+   numeroEmploye INT AUTO_INCREMENT,
+   nom VARCHAR(50),
+   prenom VARCHAR(50),
+   numeroTelephone VARCHAR(50),
+   PRIMARY KEY(numeroEmploye)
+);
+
+CREATE TABLE Client(
+   numeroClient VARCHAR(50) AUTO_INCREMENT,
+   nom VARCHAR(50),
+   prenom VARCHAR(50),
+   numeroTelephone VARCHAR(50),
+   adresse VARCHAR(250),
+   PRIMARY KEY(numeroClient)
+);
+
+CREATE TABLE TypeProduit(
+   codeBarre INT,
+   type VARCHAR(50),
+   PRIMARY KEY(codeBarre)
+);
+
+CREATE TABLE Piece(
+   reference VARCHAR(50),
+   designation VARCHAR(250),
+   stock INT,
+   PRIMARY KEY(reference)
+);
+
+CREATE TABLE Produit(
+   numeroSerie VARCHAR(50),
+   dateAchat DATE,
+   codeBarre INT NOT NULL,
+   numeroClient VARCHAR(50) NOT NULL,
+   PRIMARY KEY(numeroSerie),
+   FOREIGN KEY(codeBarre) REFERENCES TypeProduit(codeBarre),
+   FOREIGN KEY(numeroClient) REFERENCES Client(numeroClient)
+);
+
+CREATE TABLE Intervention(
+   numeroIntervention INT AUTO_INCREMENT,
+   dateIntervention DATE,
+   lieu VARCHAR(250),
+   compteRendu VARCHAR(1000),
+   reussiteIntervention LOGICAL,
+   tempsIntervention INT,
+   numeroSerie VARCHAR(50) NOT NULL,
+   numeroEmploye INT NOT NULL,
+   PRIMARY KEY(numeroIntervention),
+   FOREIGN KEY(numeroSerie) REFERENCES Produit(numeroSerie),
+   FOREIGN KEY(numeroEmploye) REFERENCES Technicien(numeroEmploye)
+);
+
+CREATE TABLE PieceProduit(
+   codeBarre INT,
+   reference VARCHAR(50),
+   PRIMARY KEY(codeBarre, reference),
+   FOREIGN KEY(codeBarre) REFERENCES TypeProduit(codeBarre),
+   FOREIGN KEY(reference) REFERENCES Piece(reference)
+);
+
+CREATE TABLE PieceChange(
+   numeroIntervention INT,
+   reference VARCHAR(50),
+   PRIMARY KEY(numeroIntervention, reference),
+   FOREIGN KEY(numeroIntervention) REFERENCES Intervention(numeroIntervention),
+   FOREIGN KEY(reference) REFERENCES Piece(reference)
+);
