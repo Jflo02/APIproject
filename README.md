@@ -1,5 +1,5 @@
 # APIproject
 
-##Projet Python TP API EPSI B2
+## Projet Python TP API EPSI B2
 
-###Rémi Petit, Florimond Jaulin, Nicolas Tahon
+### Rémi Petit, Florimond Jaulin, Nicolas Tahon
