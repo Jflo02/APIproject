@@ -1,18 +1,18 @@
 CREATE TABLE IF NOT EXISTS Technicien(
-   numeroEmploye INT AUTO_INCREMENT,
+   numeroEmploye INTEGER PRIMARY KEY AUTOINCREMENT,
    nom VARCHAR(50),
    prenom VARCHAR(50),
-   numeroTelephone VARCHAR(50),
-   PRIMARY KEY(numeroEmploye)
+   numeroTelephone VARCHAR(50)
+
 );
 
 CREATE TABLE IF NOT EXISTS Client(
-   numeroClient INT AUTO_INCREMENT,
+   numeroClient INTEGER PRIMARY KEY AUTOINCREMENT,
    nom VARCHAR(50),
    prenom VARCHAR(50),
    numeroTelephone VARCHAR(50),
-   adresse VARCHAR(250),
-   PRIMARY KEY(numeroClient)
+   adresse VARCHAR(250)
+
 );
 
 CREATE TABLE IF NOT EXISTS TypeProduit(
@@ -39,7 +39,7 @@ CREATE TABLE IF NOT EXISTS Produit(
 );
 
 CREATE TABLE IF NOT EXISTS Intervention(
-   numeroIntervention INT AUTO_INCREMENT,
+   numeroIntervention INTEGER PRIMARY KEY AUTOINCREMENT,
    dateIntervention DATE,
    lieu VARCHAR(250),
    compteRendu VARCHAR(1000),
@@ -47,7 +47,6 @@ CREATE TABLE IF NOT EXISTS Intervention(
    tempsIntervention INT,
    numeroSerie VARCHAR(50) NOT NULL,
    numeroEmploye INT NOT NULL,
-   PRIMARY KEY(numeroIntervention),
    FOREIGN KEY(numeroSerie) REFERENCES Produit(numeroSerie),
    FOREIGN KEY(numeroEmploye) REFERENCES Technicien(numeroEmploye)
 );
