@@ -9,23 +9,11 @@ class Intervention:
         self.tempsIntervention = None
         self.piecesChangees = None
 
-    def interventionAjouter(self, date, lieu, produitConcerne):
-        pass
-
-    def interventionSupprimer(self, numeroIntervention):
-        pass
-
-    def interventionModifier(self, **kwargs):
-        pass
-
-    def realiserCompteRendu(self, ):
+    def realiserCompteRendu(self):
         pass
 
     def __str__(self, ):
         pass
 
-    def interventionRecupererAll(self, ):
-        pass
-
-    def interventionRecupererById(self, ):
+    def interventionRecupererAll(self):
         pass

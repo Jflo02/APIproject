@@ -3,7 +3,7 @@ import sqlite3
 
 class ManageSqlLite:
     def __init__(self, databaseName):
-        self.sqlConnection = sqlite3.connect(databaseName)
+        self.sqlConnection = sqlite3.connect(databaseName, check_same_thread=False)
         self.sqlCursor = self.sqlConnection.cursor()
 
     def executeSqlCommande(self, sqlCmd):
