@@ -32,6 +32,12 @@ def getInterventionByTechnicien(idtech):
     jsonIntervention = json.dumps(dictInterventions)
     return jsonIntervention
 
+@app.route('/technicienajd/<idtech>')
+def getInterventionByTechnicienAujourdhui(idtech):
+    dictInterventions = manageTechnicien.recupererInterventionsByTechnicienAujourdui(idtech)
+    jsonIntervention = json.dumps(dictInterventions)
+    return jsonIntervention
+
 @app.route('/cancelIntervention/<idIntervention>')
 def getInterventionForCancel(idIntervention):
     manageTechnicien.annulerIntervention(idIntervention)
