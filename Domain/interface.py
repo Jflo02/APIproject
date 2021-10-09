@@ -1,9 +1,12 @@
+import requests
+
+
 class Interface:
     def __init__(self):
         self.utilisateur = None
         self.tabUtilisateur = {"1": "technicien", "2": "operatrice"}
         self.choixTechnicien = {"1": "voirIntervention", "2": "faireCompteRendu"}
-        self.choixOperatrice = {"1": "voirIntervention", "2": "modifierIntervention",
+        self.choixOperatrice = {"1": "voirToutesInterventions", "2": "modifierIntervention",
                                 "3": "supprimerIntervention"}
         self.choix = None
         print("Bienvenu dans Easy SAV !")
@@ -41,6 +44,14 @@ class Interface:
                 else:
                     break
             return self.choix
+
+    def lancerAction(self, action):
+        if action == "voirToutesInterventions":
+            return self.voirToutesInterventions()
+
+    def voirToutesInterventions(self):
+        reponse = requests.get('http://127.0.0.1:5000/interventions')
+        return reponse.json()
 
     def fin(self):
         fin = input("Taper q pour quitter ou autre chose pour continuer\n")
