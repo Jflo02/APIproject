@@ -8,8 +8,8 @@ class ManageTechnicien:
 
 
     def annulerIntervention(self, numeroIntervention):
-        cmdSelect = f"DELETE FROM Intervention where numeroIntervention={numeroIntervention}"
-        self.sql.executeSqlCommande(cmdSelect)
+        cmdDelete = f"DELETE FROM Intervention where numeroIntervention={numeroIntervention}"
+        self.sql.executeSqlCommande(cmdDelete)
         self.sql.commmit()
         return True
 

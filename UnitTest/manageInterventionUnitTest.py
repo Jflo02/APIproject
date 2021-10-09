@@ -10,5 +10,17 @@ class ManageInterventionTest(unittest.TestCase):
         inter1=ManageIntervention("../Database/EasySav.db")
         self.assertEqual(inter1.interventionRecupererById(1),{1: {'Lieu': None,'dateIntervention': '20/05/1999','numeroEmploye': 1,'numeroSerie': 'C7890'}})
 
+    def test_interventionAjouter(self):
+        #Arrange
+        inter1=ManageIntervention("../Database/EasySav.db")
+        longueurTableInterventionAvantAjout = len(inter1.recupererInterventions())
+
+        #Act
+        inter1.interventionAjouter("25/05/2022", "Fake-City-For-Unit-test", "AZERTY1234", 1)
+
+        #Assert
+        longueurTableInterventionApresAjout = len(inter1.recupererInterventions())
+        self.assertGreater(longueurTableInterventionApresAjout, longueurTableInterventionAvantAjout)
+
 if __name__ == '__main__':
     unittest.main()
