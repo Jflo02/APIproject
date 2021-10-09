@@ -25,16 +25,28 @@ class ManageIntervention:
     def recupererInterventions(self):
         cmd_select = f"SELECT * FROM Intervention"
         self.sql.executeSqlCommande(cmd_select)
-        listInterventions = []
+        listInterventions = {}
         for row in self.sql.sqlCursor:
-            listInterventions.append(Intervention(row[1], row[2], row[6]))
-        self.sql.closeConnection()
-        return (listInterventions)
+            listInterventions.update({row[0]: {
+                "dateIntervention": row[1],
+                "Lieu": row[2],
+                "numeroSerie": row[6],
+                "numeroEmploye": row[7]
+            }})
+        return listInterventions
 
     def interventionRecupererById(self, numeroIntervention):
         cmd_select = f"SELECT * FROM Intervention where numeroIntervention = {numeroIntervention}"
         self.sql.executeSqlCommande(cmd_select)
+        listInterventions = {}
         for row in self.sql.sqlCursor:
-            var = Intervention(row[1], row[2], row[6])
-        self.sql.closeConnection()
-        return var
+            listInterventions.update({row[0]: {
+                "dateIntervention": row[1],
+                "Lieu": row[2],
+                "numeroSerie": row[6],
+                "numeroEmploye": row[7]
+            }})
+        return listInterventions
+#
+# objet = ManageIntervention("../Database/EasySav.db")
+# objet.recupererInterventions()
