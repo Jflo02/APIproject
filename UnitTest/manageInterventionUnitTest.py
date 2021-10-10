@@ -22,5 +22,15 @@ class ManageInterventionTest(unittest.TestCase):
         longueurTableInterventionApresAjout = len(inter1.recupererInterventions())
         self.assertGreater(longueurTableInterventionApresAjout, longueurTableInterventionAvantAjout)
 
+    def test_annulerIntervention(self):
+        #Arrange
+        inter1=ManageIntervention("../Database/EasySav.db")
+        longueurTableInterventionAvantSupp = len(inter1.recupererInterventions())
+
+        #Act
+        in
+        self.assertTrue(inter1.interventionSupprimer(1))
+
+
 if __name__ == '__main__':
     unittest.main()

@@ -12,7 +12,10 @@ class ManageIntervention:
         self.sql.commmit()
 
     def interventionSupprimer(self, numeroIntervention):
-        pass
+        cmdDelete = f"DELETE FROM Intervention where numeroIntervention={numeroIntervention}"
+        self.sql.executeSqlCommande(cmdDelete)
+        self.sql.commmit()
+
 
     def interventionModifier(self, **kwargs):
         pass

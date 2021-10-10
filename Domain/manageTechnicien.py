@@ -7,12 +7,6 @@ class ManageTechnicien:
         self.aujourdhui = date.today().strftime("%d/%m/%Y")
 
 
-    def annulerIntervention(self, numeroIntervention):
-        cmdDelete = f"DELETE FROM Intervention where numeroIntervention={numeroIntervention}"
-        self.sql.executeSqlCommande(cmdDelete)
-        self.sql.commmit()
-        return True
-
     def recupererInterventionsByTechnicien(self, numeroEmploye):
         cmdSelect= f"SELECT * from Intervention where numeroEmploye={numeroEmploye}"
         self.sql.executeSqlCommande(cmdSelect)

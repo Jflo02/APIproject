@@ -22,15 +22,20 @@ def getAllInterventions():
     elif request.method == 'POST':
         jsonToDict = request.get_json()
         print(jsonToDict)
-        manageIntervention.interventionAjouter(jsonToDict["dateIntervention"], jsonToDict["lieu"], jsonToDict["numeroSerie"], jsonToDict["numeroEmploye"])
+        manageIntervention.interventionAjouter(jsonToDict["dateIntervention"], jsonToDict["lieu"],
+                                               jsonToDict["numeroSerie"], jsonToDict["numeroEmploye"])
         return jsonToDict
 
 
-@app.route('/interventions/<id>')
+@app.route('/interventions/<id>', methods=['GET', 'DELETE'])
 def getInterventtionById(id):
-    dictInterventions = manageIntervention.interventionRecupererById(id)
-    # jsonInterventions = json.dumps(dictInterventions)
-    return jsonify(dictInterventions)
+    if request.method == 'GET':
+        dictInterventions = manageIntervention.interventionRecupererById(id)
+        # jsonInterventions = json.dumps(dictInterventions)
+        return jsonify(dictInterventions)
+    elif request.method == 'DELETE':
+        manageIntervention.interventionSupprimer(id)
+        return f"cancel ok"
 
 
 @app.route('/technicien/<idtech>')
@@ -45,12 +50,6 @@ def getInterventionByTechnicienAujourdhui(idtech):
     dictInterventions = manageTechnicien.recupererInterventionsByTechnicienAujourdui(idtech)
     jsonIntervention = json.dumps(dictInterventions)
     return jsonIntervention
-
-
-@app.route('/cancelIntervention/<idIntervention>')
-def getInterventionForCancel(idIntervention):
-    manageTechnicien.annulerIntervention(idIntervention)
-    return f"cancel ok"
 
 
 if __name__ == '__main__':
