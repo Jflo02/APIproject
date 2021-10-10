@@ -28,8 +28,11 @@ class ManageInterventionTest(unittest.TestCase):
         longueurTableInterventionAvantSupp = len(inter1.recupererInterventions())
 
         #Act
-        in
-        self.assertTrue(inter1.interventionSupprimer(1))
+        inter1.interventionSupprimer(1)
+
+        #Assert
+        longueurTableInterventionApresSupp= len(inter1.recupererInterventions())
+        self.assertLess(longueurTableInterventionApresSupp,longueurTableInterventionAvantSupp)
 
 
 if __name__ == '__main__':
