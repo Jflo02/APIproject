@@ -13,8 +13,8 @@ class ManageTechnicienTest(unittest.TestCase):
     def test_modifierInformations(self):
 
         tech1=ManageTechnicien("../Database/EasySav.db")
-        recupInfo=tech1.recupererInterventionsByTechnicien(1)
-        recupApresModif =tech1.modifierInformations(numeroEmploye=2,numeroTelephone="0600000027")
+        recupInfo=tech1.recupererInterventionsByTechnicien(2)
+        recupApresModif =tech1.modifierInformations(numeroEmploye=2,numeroTelephone="0600000030")
         self.assertNotEqual(recupInfo,recupApresModif)
 
 

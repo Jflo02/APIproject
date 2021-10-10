@@ -46,6 +46,7 @@ class ManageIntervention:
                 "nomEmploye": row[15],
                 "prenomEmploye": row[16]
             }})
+        print(listInterventions)
         return listInterventions
 
     def interventionRecupererById(self, numeroIntervention):
@@ -67,5 +68,5 @@ class ManageIntervention:
             }})
         return listInterventions
 
-# objet = ManageIntervention("../Database/EasySav.db")
-# objet.recupererInterventions()
+objet = ManageIntervention("../Database/EasySav.db")
+objet.recupererInterventions()
