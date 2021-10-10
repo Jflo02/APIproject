@@ -34,6 +34,24 @@ class ManageInterventionTest(unittest.TestCase):
         longueurTableInterventionApresSupp= len(inter1.recupererInterventions())
         self.assertLess(longueurTableInterventionApresSupp,longueurTableInterventionAvantSupp)
 
+    def test_interventionModifierPatch(self):
+        #Arrange
+        inter1 = ManageIntervention("../Database/EasySav.db")
+        interventionTest = inter1.interventionRecupererById(1)
+        interventionTest = interventionTest[1]
+        numeroDeSerieAvantPatch = interventionTest["numeroSerie"]
+        nouveauNumeroDeSerie = numeroDeSerieAvantPatch + "A"
+
+        #Act
+
+        inter1.interventionModifierPatch(numeroIntervention=1, numeroSerie=nouveauNumeroDeSerie)
+
+
+        #Assert
+        #on recupere le nouveau numero de serie pour le comparer
+        interventionTest = inter1.interventionRecupererById(1)
+        self.assertEqual(interventionTest[1]["numeroSerie"], nouveauNumeroDeSerie)
+
 
 if __name__ == '__main__':
     unittest.main()

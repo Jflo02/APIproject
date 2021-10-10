@@ -27,12 +27,14 @@ def getAllInterventions():
         return jsonToDict
 
 
-@app.route('/interventions/<id>', methods=['GET', 'DELETE'])
+@app.route('/interventions/<id>', methods=['GET', 'PATCH', 'DELETE'])
 def getInterventtionById(id):
     if request.method == 'GET':
         dictInterventions = manageIntervention.interventionRecupererById(id)
         # jsonInterventions = json.dumps(dictInterventions)
         return jsonify(dictInterventions)
+    elif request.method == 'PATCH':
+        pass
     elif request.method == 'DELETE':
         manageIntervention.interventionSupprimer(id)
         return f"cancel ok"

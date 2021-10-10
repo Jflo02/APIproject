@@ -16,12 +16,18 @@ class ManageIntervention:
         self.sql.executeSqlCommande(cmdDelete)
         self.sql.commmit()
 
-
-    def interventionModifier(self, **kwargs):
-        pass
-
-    def assignerIntervention(self, Intervention):
-        pass
+    def interventionModifierPatch(self, **kwargs):
+        cmdUpdate = f"UPDATE Intervention SET "
+        for key, value in kwargs.items():
+            if key == "numeroIntervention":
+                numeroIntervention = value
+            else:
+                cmdUpdate += f"{key} = '{value}', "
+        cmdUpdate = cmdUpdate[:-2]
+        cmdUpdate += f" WHERE numeroIntervention = {numeroIntervention}"
+        print(cmdUpdate)
+        self.sql.executeSqlCommande(cmdUpdate)
+        self.sql.commmit()
 
     def recupererInterventions(self):
         cmdSelect = f"SELECT * FROM Intervention"
@@ -55,6 +61,6 @@ class ManageIntervention:
             }})
         return listInterventions
 
-#
-# objet = ManageIntervention("../Database/EasySav.db")
-# objet.interventionAjouter("25/05/2022", "Saint-André-Lez-Lille", "AZERTY1234", 1)
+
+objet = ManageIntervention("../Database/EasySav.db")
+objet.interventionModifierPatch(numeroIntervention=3, lieu="Lille")
