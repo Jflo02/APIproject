@@ -43,8 +43,10 @@ class ManageInterventionTest(unittest.TestCase):
         nouveauNumeroDeSerie = numeroDeSerieAvantPatch + "A"
 
         #Act
-
-        inter1.interventionModifierPatch(numeroIntervention=1, numeroSerie=nouveauNumeroDeSerie)
+        dict = {}
+        dict["numeroIntervention"] = 1
+        dict["numeroSerie"] = nouveauNumeroDeSerie
+        inter1.interventionModifierPatch(dict)
 
 
         #Assert

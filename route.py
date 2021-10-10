@@ -34,7 +34,10 @@ def getInterventtionById(id):
         # jsonInterventions = json.dumps(dictInterventions)
         return jsonify(dictInterventions)
     elif request.method == 'PATCH':
-        pass
+        jsonToDict = request.get_json()
+        jsonToDict["numeroIntervention"] = id
+        manageIntervention.interventionModifierPatch(jsonToDict)
+        return "modification ok"
     elif request.method == 'DELETE':
         manageIntervention.interventionSupprimer(id)
         return f"cancel ok"

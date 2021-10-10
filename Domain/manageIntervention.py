@@ -16,9 +16,9 @@ class ManageIntervention:
         self.sql.executeSqlCommande(cmdDelete)
         self.sql.commmit()
 
-    def interventionModifierPatch(self, **kwargs):
+    def interventionModifierPatch(self, dict):
         cmdUpdate = f"UPDATE Intervention SET "
-        for key, value in kwargs.items():
+        for key, value in dict.items():
             if key == "numeroIntervention":
                 numeroIntervention = value
             else:
