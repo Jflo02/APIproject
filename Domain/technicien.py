@@ -11,9 +11,6 @@ class Technicien(Personne):
         self.interventions = {}
 
 
-    def modifierInformations(self, **kwargs):
-        pass
-
 
 
 
