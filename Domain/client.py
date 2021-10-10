@@ -10,5 +10,6 @@ class Client(Personne):
         self.adresse = adresse
         self.numeroClient = numeroClient
 
-    def modifierInformations(self, **kwargs):
-        pass
+
+
+
