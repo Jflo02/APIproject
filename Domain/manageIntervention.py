@@ -68,5 +68,4 @@ class ManageIntervention:
             }})
         return listInterventions
 
-objet = ManageIntervention("../Database/EasySav.db")
-objet.recupererInterventions()
+

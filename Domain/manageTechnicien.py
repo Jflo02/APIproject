@@ -20,7 +20,7 @@ class ManageTechnicien:
 
 
     def recupererInterventionsByTechnicien(self, numeroEmploye):
-        cmdSelect= f"SELECT * FROM Intervention INNER JOIN Produit on Intervention.numeroSerie = Produit.numeroSerie INNER JOIN TypeProduit TP on TP.codeBarre = Produit.codeBarre INNER JOIN Technicien T on T.numeroEmploye = Intervention.numeroEmploye where Technicien.numeroEmploye={numeroEmploye}"
+        cmdSelect= f"SELECT * FROM Technicien INNER JOIN Intervention I on Technicien.numeroEmploye = I.numeroEmploye INNER JOIN Produit P on P.numeroSerie = I.numeroSerie INNER JOIN TypeProduit TP on TP.codeBarre = P.codeBarre where Technicien.numeroEmploye={numeroEmploye}"
         self.sql.executeSqlCommande(cmdSelect)
         dicorecuperer = {}
         for row in self.sql.sqlCursor:
@@ -40,7 +40,7 @@ class ManageTechnicien:
         return dicorecuperer
 
     def recupererInterventionsByTechnicienAujourdui(self, numeroEmploye):
-        cmdSelect= f"SELECT * FROM Intervention INNER JOIN Produit on Intervention.numeroSerie = Produit.numeroSerie INNER JOIN TypeProduit TP on TP.codeBarre = Produit.codeBarre INNER JOIN Technicien T on T.numeroEmploye = Intervention.numeroEmploye where Technicien.numeroEmploye={numeroEmploye}"
+        cmdSelect= f"SELECT * FROM Technicien INNER JOIN Intervention I on Technicien.numeroEmploye = I.numeroEmploye INNER JOIN Produit P on P.numeroSerie = I.numeroSerie INNER JOIN TypeProduit TP on TP.codeBarre = P.codeBarre where Technicien.numeroEmploye={numeroEmploye}"
         self.sql.executeSqlCommande(cmdSelect)
         dicorecuperer = {}
         for row in self.sql.sqlCursor:
@@ -59,13 +59,13 @@ class ManageTechnicien:
         return dicorecuperer
 
 
-tech1 =ManageTechnicien("../Database/EasySav.db")
-# tech1.modifierInformations(numeroEmploye=10,nom="Nyffels")
-# # # inter1= Intervention("24/04/2010","Marseille",'C001')
-tech1.recupererInterventionsByTechnicien(3)
-# # inter1.numeroIntervention = 1
-# #
-# # tech1.annulerIntervention(inter1)
+# tech1 =ManageTechnicien("../Database/EasySav.db")
+# # tech1.modifierInformations(numeroEmploye=10,nom="Nyffels")
+# # # # inter1= Intervention("24/04/2010","Marseille",'C001')
+# tech1.recupererInterventionsByTechnicien(2)
+# # # inter1.numeroIntervention = 1
+# # #
+# # # tech1.annulerIntervention(inter1)
 
 
 
