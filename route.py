@@ -28,7 +28,7 @@ def getAllInterventions():
 
 
 @app.route('/interventions/<id>', methods=['GET', 'PATCH', 'DELETE'])
-def getInterventtionById(id):
+def getInterventionById(id):
     if request.method == 'GET':
         dictInterventions = manageIntervention.interventionRecupererById(id)
         # jsonInterventions = json.dumps(dictInterventions)

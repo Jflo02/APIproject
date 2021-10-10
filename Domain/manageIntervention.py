@@ -30,7 +30,7 @@ class ManageIntervention:
         self.sql.commmit()
 
     def recupererInterventions(self):
-        cmdSelect = f"SELECT * FROM Intervention"
+        cmdSelect = f"SELECT * FROM Intervention INNER JOIN Produit on Intervention.numeroSerie = Produit.numeroSerie INNER JOIN TypeProduit TP on TP.codeBarre = Produit.codeBarre INNER JOIN Technicien T on T.numeroEmploye = Intervention.numeroEmploye"
         self.sql.executeSqlCommande(cmdSelect)
         listInterventions = {}
         for row in self.sql.sqlCursor:
@@ -41,12 +41,15 @@ class ManageIntervention:
                 "reussiteIntervention": row[4],
                 "tempsIntervention": row[5],
                 "numeroSerie": row[6],
-                "numeroEmploye": row[7]
+                "type": row[13],
+                "numeroEmploye": row[7],
+                "nomEmploye": row[15],
+                "prenomEmploye": row[16]
             }})
         return listInterventions
 
     def interventionRecupererById(self, numeroIntervention):
-        cmdSelect = f"SELECT * FROM Intervention where numeroIntervention = {numeroIntervention}"
+        cmdSelect = f"SELECT * FROM Intervention INNER JOIN Produit on Intervention.numeroSerie = Produit.numeroSerie INNER JOIN TypeProduit TP on TP.codeBarre = Produit.codeBarre INNER JOIN Technicien T on T.numeroEmploye = Intervention.numeroEmploye where numeroIntervention = {numeroIntervention}"
         self.sql.executeSqlCommande(cmdSelect)
         listInterventions = {}
         for row in self.sql.sqlCursor:
@@ -57,10 +60,12 @@ class ManageIntervention:
                 "reussiteIntervention": row[4],
                 "tempsIntervention": row[5],
                 "numeroSerie": row[6],
-                "numeroEmploye": row[7]
+                "type": row[13],
+                "numeroEmploye": row[7],
+                "nomEmploye": row[15],
+                "prenomEmploye": row[16]
             }})
         return listInterventions
 
-
-objet = ManageIntervention("../Database/EasySav.db")
-objet.interventionModifierPatch(numeroIntervention=3, lieu="Lille")
+# objet = ManageIntervention("../Database/EasySav.db")
+# objet.recupererInterventions()
