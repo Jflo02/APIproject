@@ -25,7 +25,6 @@ class ManageIntervention:
                 cmdUpdate += f"{key} = '{value}', "
         cmdUpdate = cmdUpdate[:-2]
         cmdUpdate += f" WHERE numeroIntervention = {numeroIntervention}"
-        print(cmdUpdate)
         self.sql.executeSqlCommande(cmdUpdate)
         self.sql.commmit()
 
@@ -62,5 +61,5 @@ class ManageIntervention:
         return listInterventions
 
 
-objet = ManageIntervention("../Database/EasySav.db")
-objet.interventionModifierPatch(numeroIntervention=3, lieu="Lille")
+# objet = ManageIntervention("../Database/EasySav.db")
+# objet.interventionModifierPatch(numeroIntervention=3, lieu="Lille")
