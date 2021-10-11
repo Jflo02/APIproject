@@ -1,5 +1,7 @@
-from Database.manageSqlLite import ManageSqlLite
 from datetime import date
+
+from Database.manageSqlLite import ManageSqlLite
+
 
 class ManageTechnicien:
     def __init__(self, databaseName):
@@ -14,50 +16,50 @@ class ManageTechnicien:
             else:
                 cmdUpdate += f"{key} = '{value}', "
         cmdUpdate = cmdUpdate[:-2]
-        cmdUpdate +=f" WHERE numeroEmploye = {numeroClient}"
+        cmdUpdate += f" WHERE numeroEmploye = {numeroClient}"
         self.sql.executeSqlCommande(cmdUpdate)
         self.sql.commmit()
 
-
     def recupererInterventionsByTechnicien(self, numeroEmploye):
-        cmdSelect= f"SELECT * FROM Technicien INNER JOIN Intervention I on Technicien.numeroEmploye = I.numeroEmploye INNER JOIN Produit P on P.numeroSerie = I.numeroSerie INNER JOIN TypeProduit TP on TP.codeBarre = P.codeBarre where Technicien.numeroEmploye={numeroEmploye}"
+        cmdSelect = f"SELECT * FROM Technicien INNER JOIN Intervention I on Technicien.numeroEmploye = I.numeroEmploye INNER JOIN Produit P on P.numeroSerie = I.numeroSerie INNER JOIN TypeProduit TP on TP.codeBarre = P.codeBarre where Technicien.numeroEmploye={numeroEmploye}"
         self.sql.executeSqlCommande(cmdSelect)
         dicorecuperer = {}
         for row in self.sql.sqlCursor:
-            dicorecuperer.update({row[0]: {
-                "dateIntervention": row[1],
-                "lieu": row[2],
-                "compteRendu": row[3],
-                "reussiteIntervention": row[4],
-                "tempsIntervention": row[5],
-                "numeroSerie": row[6],
-                "type": row[13],
-                "numeroEmploye": row[7],
-                "nomEmploye": row[15],
-                "prenomEmploye": row[16]
+            print(row)
+            dicorecuperer.update({row[4]: {
+                "dateIntervention": row[5],
+                "lieu": row[6],
+                "compteRendu": row[7],
+                "reussiteIntervention": row[8],
+                "tempsIntervention": row[9],
+                "numeroSerie": row[10],
+                "type": row[15],
+                "numeroEmploye": row[8],
+                "nomEmploye": row[1],
+                "prenomEmploye": row[2]
             }})
         print(dicorecuperer)
         return dicorecuperer
 
     def recupererInterventionsByTechnicienAujourdui(self, numeroEmploye):
-        cmdSelect= f"SELECT * FROM Technicien INNER JOIN Intervention I on Technicien.numeroEmploye = I.numeroEmploye INNER JOIN Produit P on P.numeroSerie = I.numeroSerie INNER JOIN TypeProduit TP on TP.codeBarre = P.codeBarre where Technicien.numeroEmploye={numeroEmploye}"
+        cmdSelect = f"SELECT * FROM Technicien INNER JOIN Intervention I on Technicien.numeroEmploye = I.numeroEmploye INNER JOIN Produit P on P.numeroSerie = I.numeroSerie INNER JOIN TypeProduit TP on TP.codeBarre = P.codeBarre where Technicien.numeroEmploye={numeroEmploye}"
         self.sql.executeSqlCommande(cmdSelect)
+
         dicorecuperer = {}
         for row in self.sql.sqlCursor:
             dicorecuperer.update({row[0]: {
-                "dateIntervention": row[1],
-                "lieu": row[2],
-                "compteRendu": row[3],
-                "reussiteIntervention": row[4],
-                "tempsIntervention": row[5],
-                "numeroSerie": row[6],
-                "type": row[13],
-                "numeroEmploye": row[7],
-                "nomEmploye": row[15],
-                "prenomEmploye": row[16]
+                "dateIntervention": row[5],
+                "lieu": row[6],
+                "compteRendu": row[7],
+                "reussiteIntervention": row[8],
+                "tempsIntervention": row[9],
+                "numeroSerie": row[10],
+                "type": row[15],
+                "numeroEmploye": row[8],
+                "nomEmploye": row[1],
+                "prenomEmploye": row[2]
             }})
         return dicorecuperer
-
 
 # tech1 =ManageTechnicien("../Database/EasySav.db")
 # # tech1.modifierInformations(numeroEmploye=10,nom="Nyffels")
@@ -66,7 +68,3 @@ class ManageTechnicien:
 # # # inter1.numeroIntervention = 1
 # # #
 # # # tech1.annulerIntervention(inter1)
-
-
-
-
